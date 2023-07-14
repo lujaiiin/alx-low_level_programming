@@ -11,11 +11,11 @@ int main(void)
 
 	for (d = '0'; d <= '9'; d++)
 	{
-		for (b = d + 1; b = '9'; b++)
+		for (b = d + 1; b <= '9'; b++)
 		{
 			for (q = b + 1; q <= '9'; q++)
 			{
-				if ((d != b) != q)
+				if ((b != d) != q)
 				{
 					putchar(d);
 					putchar(b);
