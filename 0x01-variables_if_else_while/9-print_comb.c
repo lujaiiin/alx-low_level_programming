@@ -5,11 +5,15 @@
 */
 int main(void)
 {
-	int i;
+	int n;
 
-	for (i = 0; i < 10; i++)
+	for (n = 48; n <= 57; n++)
 	{
-		putchar(i);
+		putchar(n);
+		if (n == 57)
+		{
+			continue;
+		}
 		putchar(',');
 		putchar(' ');
 	}
