@@ -1,13 +1,13 @@
 #include <stdio.h>
-
 /*
- * main - print digit num
- *
- * Return always (0)
+ * main - prints numbers from 0 to 9
+ * Return always 0 (success)
  */
 int main(void)
 {
+
 	int i;
+
 	for (i = 0; i < 10; i++)
 	{
 		printf("%d", i);
