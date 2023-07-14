@@ -1,9 +1,8 @@
 #include <stdio.h>
-
 /**
- * main - prints the alphabet
- * Return:  always 0 (success)
- */
+*main - Entry point
+*Return: always 0
+*/
 int main(void)
 {
 	char s[52] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
