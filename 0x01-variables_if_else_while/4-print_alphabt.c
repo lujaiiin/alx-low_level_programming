@@ -1,9 +1,7 @@
 #include <stdio.h>
-
 /*
- * main - print the alphabet
- *
- * Return always (0);
+ * main - print the alphabet whitout q and e
+ * Return always 0 (success)
  */
 int main(void)
 {
