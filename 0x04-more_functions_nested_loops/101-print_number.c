@@ -1,25 +1,23 @@
 #include "main.h"
 
 /**
- * print_number - prints numbers 
+ * print_number - prints numbers
  *
  * @n: value that..
  */
 
 void print_number(int n)
 {
-	int p;
+	unsigned int i = n;
 
-	if (n <= 0)
+	if (n < 0)
 	{
-		n = n * -1;
-		_putchar('-');
-		_putchar(n + '0');
+		_putchar(45);
+		i = -i;
 	}
-	if (n > 0)
+	if (i / 10)
 	{
-		p = n / 10;
-		p = p / 10;
+		print_number(i / 10);
 	}
-	_putchar((p % 10)+ '0');
+	_putchar(i % 10 + '0');
 }
