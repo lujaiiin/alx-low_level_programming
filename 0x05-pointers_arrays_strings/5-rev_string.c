@@ -17,19 +17,22 @@ void rev_string(char *s)
 	for (i = 0; i < len / 2; i++)
 	{
 		char temp = s[i];
+
 		s[i] = s[len - 1 - i];
 		s[len - 1 - i] = temp;
 	}
 }
 
-/**_strlen - function
+/**
+ *_strlen - function
  *
  *@sl:jkfhk
+ *Return: jj
  */
 
 int _strlen(char *sl)
 {
-	int ad;
+	int ad = 0;
 
 	while (*sl != '\0')
 	{

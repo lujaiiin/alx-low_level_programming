@@ -9,33 +9,11 @@
 
 void puts2(char *str)
 {
-	int len, i;
+	int i;
 
-	len = _strlen(str);
-
-	for (i = 0; i <= len; i++)
+	for (i = 0; str[i]!= '\0'; i += 2)
 	{
-		if (len % 2 == 0)
-		{
-		printf("%d", str[i]);
-		}
+		_putchar(str[i]);
 	}
-}
-
-/**
- *_strlen - function to lenght
- *Return: ad
- *@s: kkk
- */
-
-int _strlen(char *s)
-{
-	int ad = 0;
-
-	while (*s != '\0')
-	{
-		ad++;
-		s++;
-	}
-	return (ad);
+	_putchar('\n');
 }
