@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m "iam perfect"
+git commit -m "lalalalala"
 git push
