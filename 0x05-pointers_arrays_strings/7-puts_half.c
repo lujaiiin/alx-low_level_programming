@@ -21,7 +21,7 @@ void puts_half(char *str)
 	while (a > b)
 	{
 		++b;
-		printf("%c", str[a]);
+		printf("%c", str[b]);
 	}
 	printf("\n");
 }
