@@ -1,33 +1,27 @@
 #include "main.h"
 
 /**
- *puts_half - function puts half
+ *puts_half -function
  *
- *@str: value
+ *@str: pointer
  */
 
-void puts2(char *str)
+void puts_half(char *str)
 {
-	int j = 0;
-	int i;
+	int a = 0;
+	int b;
 
-	while (str[j] != '\0')
-	{
-		j++;
-	}
-	if ( j % 2 == 1)
-	{
-		i = (j - 1) / 2;
-		i += 1;
-	}
+	while (str[a] != 0)
+		a++;
+	a--;
+	if (a % 2 == 0)
+		b = a / 2;
 	else
+		b = (a - 1) / 2;
+	while (a > b)
 	{
-		i = j / 2;
-	}
-
-	for (; i < j; i++)
-	{
-		printf("%c", str[i]);
+		++b;
+		printf("%c", str[a]);
 	}
 	printf("\n");
 }
