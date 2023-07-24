@@ -8,31 +8,26 @@
 
 void puts2(char *str)
 {
-	int l, s, i;
+	int j = 0;
+	int i;
 
-	l = _strlen(str);
-	s = (l + 1) / 2;
+	while (str[j] != '\0')
+	{
+		j++;
+	}
+	if ( j % 2 == 1)
+	{
+		i = (j - 1) / 2;
+		i += 1;
+	}
+	else
+	{
+		i = j / 2;
+	}
 
-	for (i = s; i < l; i++)
+	for (; i < j; i++)
 	{
 		printf("%c", str[i]);
 	}
 	printf("\n");
-}
-
-/**
- *_strlen: function
- *
- */
-
-int _strlen(char *s)
-{
-	int ad = 0;
-
-	while (*s != '\0')
-	{
-		ad++;
-		s++;
-	}
-	return (ad);
 }
