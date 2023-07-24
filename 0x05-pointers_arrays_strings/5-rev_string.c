@@ -12,16 +12,22 @@ void rev_string(char *s)
 {
 	int i, len;
 
-	len = ht(s);
+	len = _strlen(s);
 
-	for (i = len-1; i >= 0; i--)
+	for (i = 0; i < len / 2; i++)
 	{
-		printf("%c", s[i]);
+		char temp = s[i];
+		s[i] = s[len - 1 - i];
+		s[len - 1 - i] = temp;
 	}
-	printf("\n");
 }
 
-int ht(char *sl)
+/**_strlen - function
+ *
+ *@sl:jkfhk
+ */
+
+int _strlen(char *sl)
 {
 	int ad;
 
