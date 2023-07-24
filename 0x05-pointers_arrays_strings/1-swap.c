@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *swap - function swap value
+ *swap_int - function swap value
  *
  *@a: value i well swap
  *
