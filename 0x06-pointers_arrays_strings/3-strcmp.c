@@ -11,14 +11,13 @@ int _strcmp(char *s1, char *s2)
 {
 	int i, j, l;
 
-	i = 48;
-	j = 48;
+	i = 0;
+	j = 0;
 
 	while (s1[i] != '\0')
 	{
-		l = s1[i] - s2[j];
-		i++;
-		j++;
+		l = (s1[i] - 48) - (s2[j] - 48);
+		break;
 	}
 	return (l);
 }
