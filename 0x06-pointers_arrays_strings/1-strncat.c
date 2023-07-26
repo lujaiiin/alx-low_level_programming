@@ -4,6 +4,7 @@
  *_strncat - function
  *@dest: value
  *@src: value
+ *@n: value
  *Return: always
  */
 

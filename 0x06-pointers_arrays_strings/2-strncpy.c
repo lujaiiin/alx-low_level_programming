@@ -4,6 +4,7 @@
  *_strncpy - function
  *@dest: value
  *@src: value
+ *@n: value
  *Return: always
  */
 
