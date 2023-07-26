@@ -11,8 +11,8 @@ int _strcmp(char *s1, char *s2)
 {
 	int i, j, l;
 
-	i = 0;
-	j = 0;
+	i = 48;
+	j = 48;
 
 	while (s1[i] != '\0')
 	{
