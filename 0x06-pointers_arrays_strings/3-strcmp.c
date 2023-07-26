@@ -19,5 +19,7 @@ int _strcmp(char *s1, char *s2)
 		l = (s1[i] - 48) - (s2[j] - 48);
 		break;
 	}
+	s[i] = '\0';
+
 	return (l);
 }
