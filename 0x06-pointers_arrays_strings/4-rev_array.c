@@ -7,21 +7,20 @@
  *Return: always
  */
 
+int lenght(int *a);
+
 void reverse_array(int *a, int n)
 {
 	int i, j;
-	int s, l;
+	int tmp = 0;
 
-	j = 0;
+	j = n - 1;
 
-	while (a[j] != '\0')
+	for (i = 0; i <= n- 1; i++)
 	{
-	for (i = n; i >= 0; i--)
-	{
-		s = a[i];
-		l[j] = s;
-		a[i] = l[j];
-		j++;
-	}
+		tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+		j--;
 	}
 }
