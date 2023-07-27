@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- *_leet - function
- *
+ *leet - function
+ *Description: string lll
  *@s: value
  *Return: always
  */
