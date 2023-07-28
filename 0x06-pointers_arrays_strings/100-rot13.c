@@ -11,23 +11,21 @@ char *rot13(char *s)
 {
 	int i;
 
-	while (s[i] != '\0')
-	{
-		if ((s[i] >= 65 && s[i] <= 90) || (s[i] >= 97 && s[i] <= 122))
-		{
-			while (s[i] >= 77 && s[i] <= 90)
-			{
-				s[i] = s[i] - 13;
-			}
-			i++;
-			while (s[i] < 77 && s[i] >= 65)
-			{
-				s[i] = s[i] + 13;
-			}
-			i++;
-		}
-	}
-	s[i] = '\0';
+	char l[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char k[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char *j = s;
 
-	return (s);
+	while (*s)
+	{
+		for (i = 0; i <= 52; i++)
+		{
+			if (*s == l[i])
+			{
+				*s = k[i];
+				break;
+			}
+		}
+		s++;
+	}
+	return (j);
 }
