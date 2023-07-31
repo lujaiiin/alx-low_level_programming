@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *_memset - finction to prints 
+ *_memset - finction to prints
  *@s: value
  *@b: value
  *@n: value
@@ -10,15 +10,11 @@
 
 char *_memset(char *s, char b, unsigned int n)
 {
-       unsigned int i, j;
+	unsigned int i;
 
-	for (i = 0; i <= n; i++)
+	for (i = 0; i < n; i++)
 	{
 		s[i] = b;
-	}
-	for (j = 0; j <= n; j++)
-	{
-		printf("%c", s[j]);
 	}
 	return (s);
 }
