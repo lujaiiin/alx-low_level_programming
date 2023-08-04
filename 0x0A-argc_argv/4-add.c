@@ -11,20 +11,14 @@
 int main(int argc, char *argv[])
 {
 	int s = 0;
-	int x;
+	char *c;
 
-	for (x = 1; x < argc; x++)
+	while (--argc)
 	{
-		if (*argv[x] <= 57 && *argv[x] >= 48)
-		{
-			if (atoi(argv[x]) > 0)
-				s += atoi(argv[x]);
-		}
-		else if (*argv[x] > 57 || *argv[x] < 48)
-		{
-			printf("Error\n");
-			return (1);
-		}
+		for (c = argv[argc]; *c; c++)
+			if (*c < '0' || *c > '9')
+				return (printf("Error\n"), 1);
+		s += atoi(argv[argc]);
 	}
 	printf("%d\n", s);
 	return (0);
