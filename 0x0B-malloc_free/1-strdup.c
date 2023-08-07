@@ -17,10 +17,13 @@ char *_strdup(char *str)
 
 	p = malloc(sizeof(char) * lenght(str));
 
-	if (str == NULL || p == NULL)
+	if (p == NULL)
+	{
+		return (NULL);
+	}
+	else if (str == NULL)
 	{
 		printf("failed to allocate memory\n");
-		return (NULL);
 	}
 	else
 	{
