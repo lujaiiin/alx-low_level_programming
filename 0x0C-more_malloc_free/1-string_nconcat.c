@@ -78,8 +78,8 @@ unsigned int lenght(char *s1, char *s2, unsigned int n)
 		if (j < n)
 		{
 			l++;
-			j++;
 		}
+		j++;
 	}
 	s += l;
 	return (l);
