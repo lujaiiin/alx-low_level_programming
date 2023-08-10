@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned int lenght(char *s1, char *s2);
+unsigned int lenght(char *s1, char *s2, unsigned int n);
 
 /**
  *string_nconcat - function
@@ -28,11 +28,11 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s2 = "";
 	}
 
-	p = malloc(sizeof(char) * (lenght(s1, s2) + 1));
+	p = malloc(sizeof(char) * (lenght(s1, s2, n) + 1));
 
-	if (n >= lenght(s1, s2))
+	if (n >= lenght(s1, s2, n))
 	{
-		n = lenght(s1, s2);
+		n = lenght(s1, s2, n);
 	}
 	if (p == NULL)
 	{
@@ -43,7 +43,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		p[i] = s1[i];
 		i++;
 	}
-	while (j <= n)
+	while (j < n)
 	{
 		p[i] = s2[j];
 		j++;
@@ -59,21 +59,28 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
  *Return: always
  */
 
-unsigned int lenght(char *s1, char *s2)
+unsigned int lenght(char *s1, char *s2, unsigned int n)
 {
 	unsigned int i = 0;
 	unsigned int ad = 0;
 	unsigned int j = 0;
+	unsigned int s = 0;
+	unsigned int l = 0;
 
 	while (s1[i] != '\0')
 	{
 		ad++;
 		i++;
 	}
-	while (s2[j] != '\0')
+	s += ad;
+	while (s2[j])
 	{
-		ad++;
-		j++;
+		if (j < n)
+		{
+			l++;
+			j++;
+		}
 	}
-	return (ad);
+	s += l;
+	return (l);
 }
