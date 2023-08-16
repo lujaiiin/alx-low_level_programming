@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		printf("Error\n");
-		exit (1);
+		exit(1);
 	}
 	p = atoi(argv[1]);
 	if (p < 0)
