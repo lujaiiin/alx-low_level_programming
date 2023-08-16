@@ -14,7 +14,7 @@ int op_add(int a, int b)
 
 /**
  *op_sub - function
- *@a value;
+ *@a: value
  *@b: value
  *Return: always
  */
@@ -26,7 +26,7 @@ int op_sub(int a, int b)
 
 /**
  * op_mul - function
- * 2a: value
+ * @a: value
  * @b: value
  * Return: always
  */
