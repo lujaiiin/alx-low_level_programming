@@ -1,12 +1,10 @@
 #include "lists.h"
 
 /**
- * add_node - function
- * @head: value
- * @str: value
+ * lenght - function
+ * @l: vslue
  * Return: always
  */
-
 int lenght(char *l)
 {
 	int ad = 0;
@@ -19,6 +17,14 @@ int lenght(char *l)
 	}
 	return (ad);
 }
+
+/**
+ * add_node - function
+ * @head: value
+ * @str: value
+ * Return: always
+ */
+
 list_t *add_node(list_t **head, const char *str)
 {
 	list_t *newn;
