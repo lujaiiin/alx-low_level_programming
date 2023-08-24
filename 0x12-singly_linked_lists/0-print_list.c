@@ -3,7 +3,7 @@
 /**
  * print_list - function
  * @h: value
- * Retunr: always
+ * Return: always
  */
 
 size_t print_list(const list_t *h)
@@ -14,9 +14,12 @@ size_t print_list(const list_t *h)
 	if (h->str == NULL)
 	{
 		printf("[%u] (nil)\n", h->len);
+		l++;
 	}
-	for (i = 0; i < h->len; i++)
+	for (i = 0;  h != NULL; i++)
 	{
+		if (h->str == NULL)
+			break;
 		printf("[%u] %s\n", h->len, h->str);
 		h = h->next;
 		l++;
