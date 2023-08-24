@@ -1,39 +1,40 @@
 #include "lists.h"
-
 /**
  * lenght - function
- * @l: vslue
+ * @l: value
  * Return: always
  */
+
 int lenght(char *l)
 {
-	int ad = 0;
 	int i = 0;
 
-	while (l[i] != '\0')
+	while (l[i])
 	{
 		i++;
-		ad++;
 	}
-	return (ad);
+	return (i);
 }
-
 /**
- * add_node - function
+ * add_node_end - function
+ * @str: vlaue
  * @head: value
- * @str: value
  * Return: always
  */
 
-list_t *add_node(list_t **head, const char *str)
+list_t *add_node_end(list_t **head, const char *str)
 {
 	list_t *newn;
+	list_t *p;
 
+	p = *head;
 	newn = malloc(sizeof(list_t));
-	if (newn == NULL)
+
+	if (newn == NULL || head == NULL)
 	{
 		return (NULL);
 	}
+
 	if (str != NULL)
 	{
 		newn->str = strdup(str);
@@ -43,9 +44,17 @@ list_t *add_node(list_t **head, const char *str)
 			return (NULL);
 		}
 		newn->len = lenght(newn->str);
-		newn->next = NULL;
 	}
-	newn->next = *head;
-	*head = newn;
+	if (*head == NULL)
+	{
+		*head = newn;
+		return (newn);
+	}
+
+	while (p->next)
+	{
+		p = p->next;
+	}
+	p->next = newn;
 	return (newn);
 }
