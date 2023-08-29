@@ -22,18 +22,19 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		*head = (*head)->next;
 		free(ptr);
 		return (1);
+
 	}
+	ptr = *head;
 	while (index > i)
 	{
-		ptr = *head;
-		*head = (*head)->next;
+		k = ptr;
+		ptr = ptr->next;
 		i++;
 	}
 	if (i == index)
 	{
-		k = ptr;
-		ptr->next = (*head)->next;
-		free(k);
+		k->next = ptr->next;
+		free(ptr);
 		return (1);
 	}
 	return (-1);
