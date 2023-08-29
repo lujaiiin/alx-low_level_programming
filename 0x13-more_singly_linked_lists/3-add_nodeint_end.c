@@ -1,0 +1,37 @@
+#include "lists.h"
+
+/**
+ * add_nodeint_end - function
+ * @head: value
+ * @n: value
+ * Return: always
+ */
+
+listint_t *add_nodeint_end(listint_t **head, const int n)
+{
+	listint_t *p, *ptr;
+
+	ptr = *head;
+
+	p = malloc(sizeof(listint_t));
+
+	if (ptr == NULL || p == NULL)
+	{
+		return (NULL);
+	}
+	p->n = n;
+	p->next = NULL;
+
+	if (*head == NULL)
+	{
+		*head = p;
+		return (p);
+	}
+	while (ptr->next != NULL)
+	{
+		ptr = ptr->next;
+	}
+	ptr->next = p;
+
+	return (p);
+}
