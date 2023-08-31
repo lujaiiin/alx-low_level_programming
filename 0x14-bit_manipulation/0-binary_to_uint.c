@@ -25,10 +25,9 @@ unsigned int binary_to_uint(const char *b)
 		}
 		else
 		{
-			s = b[(i)] - 48;
-			l += (s * powe(2, i));
+			s = *b++ - 48;
+			l = l * 2 + s;
 		}
-		i++;
 	}
 	return (l);
 }
