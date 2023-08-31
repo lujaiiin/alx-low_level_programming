@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * set_bit - functon
+ * clear_bit - function
  * @n: value
  * @index: value
  * Return: always
  */
 
-int set_bit(unsigned long int *n, unsigned int index)
+int clear_bit(unsigned long int *n, unsigned int index)
 {
 	if (index > 63)
 	{
@@ -15,7 +15,7 @@ int set_bit(unsigned long int *n, unsigned int index)
 	}
 	else
 	{
-		*n = *n | (1UL << index);
+		*n = *n & (~(1UL << index));
 	}
 	return (*n);
 }
