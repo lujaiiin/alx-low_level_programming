@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- *print_binary - function
+ *get_bit - function
  *@n: valie
+ *@index: value
  *Return: always
  */
 
@@ -17,7 +18,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	}
 	else
 	{
-		j = ( n >> index);
+		j = n >> index;
 		i = 1 & j;
 	}
 	return (i);
