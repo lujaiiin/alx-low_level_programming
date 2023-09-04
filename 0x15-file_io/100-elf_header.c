@@ -26,6 +26,33 @@ void EL(unsigned char *E)
 			dprintf(ER, "Error: not ELF:\n"), exit(98);
 	}
 }
+/**
+ * cl - function
+ * @c: value
+ * Return: always
+ */
+
+void cl(unsigned char *c)
+{
+#define S EI_CLASS
+
+	printf("  Class:                             ");
+	if (c[S] == ELFCLASSNONE)
+	{
+		printf("none\n");
+	}
+	else if (c[S] == ELFCLASS64)
+	{
+		printf("ELF64\n");
+	}
+	else if (c[S] == ELFCLASS32)
+	{
+		printf("ELF32\n");
+	}
+	else
+		printf("unkown\n");
+
+}
 
 /**
  * ma - function
@@ -38,7 +65,7 @@ void ma(unsigned char *m)
 	int i;
 
 	printf("  Magic:  ");
-	for(i = 0; i < EI_NIDENT; i++)
+	for (i = 0; i < EI_NIDENT; i++)
 	{
 		printf("%2.2x", m[i]);
 		if (i == EI_NIDENT - 1)
@@ -56,7 +83,7 @@ void ma(unsigned char *m)
 
 int main(int c, char *v[])
 {
-	int r, f1;
+	int r = 0, f1, l;
 	Elf64_Ehdr *E;
 
 	if (c != 2)
@@ -79,7 +106,12 @@ int main(int c, char *v[])
 	}
 	EL(E->e_ident);
 	ma(E->e_ident);
-
-	close (f1);
+	cl(E->e_ident);
+	l = close(f1);
+	if (l == -1)
+	{
+		dprintf(ER, "cant close %d\n", f1);
+		exit(98);
+	}
 	return (0);
 }
