@@ -1,6 +1,5 @@
 #include "main.h"
 
-#define US "Usage: cp file_from file_to\n"
 #define NW "Error: Can't write to %s\n"
 #define NR "Error: Can't read from file %s\n"
 #define NC "Error: Can't close fd %d\n"
@@ -20,7 +19,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		dprintf(ER, US);
+		dprintf(ER, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	f1 = open(argv[1], O_RDONLY);
