@@ -4,7 +4,6 @@
 #define NW "Error: Can't write to %s\n"
 #define NR "Error: Can't read from file %s\n"
 #define NC "Error: Can't close fd %d\n"
-#define PR "rw-rw-r--"
 #define ER STDERR_FILENO
 
 /**
@@ -30,7 +29,7 @@ int main(int argc, char *argv[])
 		dprintf(ER, NR, argv[1]);
 		exit(98);
 	}
-	f2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PR);
+	f2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC,"rw-rw-r--");
 	if (f2 == -1)
 	{
 		dprintf(ER, NW, argv[2]);
