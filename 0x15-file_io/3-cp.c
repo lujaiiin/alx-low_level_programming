@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 		dprintf(ER, NR, argv[1]);
 		exit(98);
 	}
-	f2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC,"rw-rw-r--");
+	f2 = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (f2 == -1)
 	{
 		dprintf(ER, NW, argv[2]);
