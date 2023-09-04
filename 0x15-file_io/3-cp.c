@@ -15,7 +15,7 @@
 
 int main(int argc, char *argv[])
 {
-	int f1, f2, b, r;
+	int f1, f2, d, r;
 	char buffer[1024];
 
 	if (argc != 3)
@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
 	}
 	while ((r = read(f1, buffer, 1024)) > 0)
 	{
-		b = write(f2, buffer, r);
-		if (b != r)
+		d = write(f2, buffer, r);
+		if (d != r)
 		{
 			dprintf(ER, NW, argv[2]);
 			exit(99);
