@@ -49,11 +49,33 @@ void cl(unsigned char *c)
 	{
 		printf("ELF32\n");
 	}
-	else
-		printf("unkown\n");
 
 }
 
+/**
+ * da - function
+ * @d: value
+ * Return: always
+ */
+
+void da(unsigned char *d)
+{
+#define A EI_DATA
+
+	printf("  Data:                              ");
+	if (d[A] == ELFDATANONE)
+	{
+		printf("none\n");
+	}
+	else if (d[A] == ELFDATA2MSB)
+	{
+		printf("2's complement, big endian\n");
+	}
+	else if (d[A] == ELFDATA2LSB)
+	{
+		printf("2's complement, little endian\n");
+	}
+}
 /**
  * ma - function
  * @m: value
@@ -107,6 +129,7 @@ int main(int c, char *v[])
 	EL(E->e_ident);
 	ma(E->e_ident);
 	cl(E->e_ident);
+	da(E->e_ident);
 	l = close(f1);
 	if (l == -1)
 	{
