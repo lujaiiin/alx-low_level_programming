@@ -5,6 +5,8 @@
 
 #define ER STDERR_FILENO
 #define US "Usage: elf_header elf_filename\n"
+void sa(Elf64_Ehdr s);
+
 /**
  * sab - function
  * @s: value
@@ -21,7 +23,7 @@ void sab(Elf64_Ehdr s)
 		case ELFOSABI_HPUX:
 			printf("UNIX - HP-UX\n");
 			break;
-		case ELFOSABI_NETBSD:
+		case  ELFOSABI_NETBSD:
 			printf("UNIX - NetBSD\n");
 			break;
 		case ELFOSABI_LINUX:
@@ -39,20 +41,26 @@ void sab(Elf64_Ehdr s)
 		case ELFOSABI_TRU64:
 			printf("UNIX - TRU64\n");
 			break;
-		case ELFOSABI_ARM:
-			printf("ARM\n");
-			break;
 		case ELFOSABI_STANDALONE:
 			printf("Standalone App\n");
 			break;
+		case ELFOSABI_ARM:
+			printf("ARM\n");
+			break;
 		default:
-			print_osabi_a(s);
+			sa(s);
 			break;
 	}
 }
-void print_osabi_a(Elf64_Ehdr h)
+/**
+ * sa - function
+ * @l: value
+ * Return: always
+ */
+
+void sa(Elf64_Ehdr l)
 {
-	switch (h.e_ident[EI_OSABI])
+	switch (l.e_ident[EI_OSABI])
 	{
 		case ELFOSABI_ARM:
 			printf("ARM");
@@ -67,8 +75,8 @@ void print_osabi_a(Elf64_Ehdr h)
 			printf("UNIX - OpenBSD");
 			break;
 		default:
-		printf("<unknown: %x>\n", h.e_ident[EI_OSABI]);
-		break;
+			printf("<unknown: %x>\n", l.e_ident[EI_OSABI]);
+			break;
 	}
 }
 /**
