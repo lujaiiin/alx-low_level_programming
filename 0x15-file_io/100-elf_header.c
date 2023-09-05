@@ -18,7 +18,57 @@ void sab(Elf64_Ehdr s)
 		case ELFOSABI_NONE:
 			printf("UNIX - System V\n");
 			break;
-
+		case ELFOSABI_HPUX:
+			printf("UNIX - HP-UX\n");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD\n");
+			break;
+		case ELFOSABI_LINUX:
+			printf("UNIX - Linux\n");
+			break;
+		case ELFOSABI_SOLARIS:
+			printf("UNIX - Solaris\n");
+			break;
+		case ELFOSABI_IRIX:
+			printf("UNIX - IRIX\n");
+			break;
+		case ELFOSABI_FREEBSD:
+			printf("UNIX - FreeBSD\n");
+			break;
+		case ELFOSABI_TRU64:
+			printf("UNIX - TRU64\n");
+			break;
+		case ELFOSABI_ARM:
+			printf("ARM\n");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App\n");
+			break;
+		default:
+			print_osabi_a(s);
+			break;
+	}
+}
+void print_osabi_a(Elf64_Ehdr h)
+{
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_ARM:
+			printf("ARM");
+			break;
+		case ELFOSABI_MODESTO:
+			printf("Nove11 - Modesto");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App");
+			break;
+		case ELFOSABI_OPENBSD:
+			printf("UNIX - OpenBSD");
+			break;
+		default:
+		printf("<unknown: %x>\n", h.e_ident[EI_OSABI]);
+		break;
 	}
 }
 /**
