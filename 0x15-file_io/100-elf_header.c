@@ -4,49 +4,58 @@
 #include <sys/types.h>
 
 #define ER STDERR_FILENO
-#define US "Usage: elf_header %s\n"
+#define US "Usage: elf_header elf_filename\n"
+/**
+ * sab - function
+ * @s: value
+ * Return: always
+ */
+void sab(Elf64_Ehdr s)
+{
+	printf("  OS/ABI:                            ");
+	switch (s.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_NONE:
+			printf("UNIX - System V\n");
+			break;
+
+	}
+}
 /**
  * ent - function
- * @e: value
  * @en: value
  * Return: value
  */
 
-void ent(unsigned long int e, unsigned char *en)
+void ent(Elf64_Ehdr en)
 {
+	unsigned char *e = (unsigned char *)&en.e_entry;
+	int l = 0, j = 0;
+
 	printf("  Entry point address:               ");
 
-	if (en[EI_DATA] == ELFDATA2MSB)
+	if (en.e_ident[EI_DATA] != ELFDATA2MSB)
 	{
-		e = ((e << 8) & 0xFF00FF00) |
-			((e >> 8) & 0xFF00FF);
-		e = (e << 16) | (e >> 16);
-	}
+		j = en.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!e[j])
+			j--;
+		printf("%x", e[j--]);
 
-	if (en[EI_CLASS] == ELFCLASS32)
-	{
-		printf("%#x\n", (unsigned int)e);
+		for (; j >= 0; j--)
+			printf("%02x", e[j]);
+		printf("\n");
 	}
-	printf("%#lx\n", e);
-}
-/**
- * EL - function
- * @E: value
- * Return: always
- */
-void EL(unsigned char *E)
-{
-	int i;
-
-	for (i = 0; i < 4; i++)
+	else
 	{
-		if (E[i] == 127 && E[i] == 'E' &&
-				E[i] == 'L' && E[i] == 'F')
+		j = 0;
+		l = en.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!e[j])
+			j++;
+		printf("%x", e[j++]);
+		for (; j <= l; j++)
 		{
-			printf("ELF Header:\n");
+			printf("\n");
 		}
-		else
-			dprintf(ER, "Error: not ELF:\n"), exit(98);
 	}
 }
 /**
@@ -55,20 +64,20 @@ void EL(unsigned char *E)
  * Return: always
  */
 
-void cl(unsigned char *c)
+void cl(Elf64_Ehdr c)
 {
 #define S EI_CLASS
 
 	printf("  Class:                             ");
-	if (c[S] == ELFCLASSNONE)
+	if (c.e_ident[S] == ELFCLASSNONE)
 	{
 		printf("none\n");
 	}
-	else if (c[S] == ELFCLASS64)
+	else if (c.e_ident[S] == ELFCLASS64)
 	{
 		printf("ELF64\n");
 	}
-	else if (c[S] == ELFCLASS32)
+	else if (c.e_ident[S] == ELFCLASS32)
 	{
 		printf("ELF32\n");
 	}
@@ -81,11 +90,11 @@ void cl(unsigned char *c)
  * Return: always
  */
 
-void ve(unsigned char *v)
+void ve(Elf64_Ehdr v)
 {
-	printf("  Version:                           %d", v[EI_VERSION]);
+	printf("  Version:                           %d", v.e_ident[EI_VERSION]);
 
-	switch (v[EI_VERSION])
+	switch (v.e_ident[EI_VERSION])
 	{
 		case EV_CURRENT:
 			printf(" (current)\n");
@@ -103,20 +112,20 @@ void ve(unsigned char *v)
  * Return: always
  */
 
-void da(unsigned char *d)
+void da(Elf64_Ehdr d)
 {
 #define A EI_DATA
 
 	printf("  Data:                              ");
-	if (d[A] == ELFDATANONE)
+	if (d.e_ident[A] == ELFDATANONE)
 	{
 		printf("none\n");
 	}
-	else if (d[A] == ELFDATA2MSB)
+	else if (d.e_ident[A] == ELFDATA2MSB)
 	{
 		printf("2's complement, big endian\n");
 	}
-	else if (d[A] == ELFDATA2LSB)
+	else if (d.e_ident[A] == ELFDATA2LSB)
 	{
 		printf("2's complement, little endian\n");
 	}
@@ -124,31 +133,33 @@ void da(unsigned char *d)
 
 /**
  * ty - function
- * @t: value
  * @te: value
  * Return: always
  */
 
-void ty(unsigned int t, unsigned char *te)
+void ty(Elf64_Ehdr te)
 {
-	if (te[EI_DATA] == ELFDATA2MSB)
+	int i = 0;
+	char *t = (char *)&te.e_type;
+
+	if (te.e_ident[EI_DATA] == ELFDATA2MSB)
 	{
-		t >>= 8;
+		i = 1;
 	}
 	printf("  Type:                              ");
-	if (t == ET_NONE)
+	if (t[i] == ET_NONE)
 	{
 		printf("NONE (None)\n");
 	}
-	else if (t == ET_EXEC)
+	else if (t[i] == ET_EXEC)
 	{
 		printf("EXEC (Executable file)\n");
 	}
-	else if (t == ET_REL)
+	else if (t[i] == ET_REL)
 	{
 		printf("REL (Relocatable file)\n");
 	}
-	else if (t == ET_DYN)
+	else if (t[i] == ET_DYN)
 	{
 		printf("DYN (Shared object file)\n");
 	}
@@ -161,24 +172,24 @@ void ty(unsigned int t, unsigned char *te)
  * @a: value
  * Return: always
  */
-void abi(unsigned char *a)
+void abi(Elf64_Ehdr a)
 {
 	printf("  ABI Version:                       %d",
-			a[EI_ABIVERSION]);
+			a.e_ident[EI_ABIVERSION]);
 }
 /**
  * ma - function
  * @m: value
  * Return: always
  */
-void ma(unsigned char *m)
+void ma(Elf64_Ehdr m)
 {
 	int i;
 
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
 	{
-		printf("%2.2x", m[i]);
+		printf("%2.2x", m.e_ident[i]);
 		if (i == EI_NIDENT - 1)
 			printf("\n");
 		else
@@ -195,37 +206,36 @@ void ma(unsigned char *m)
 int main(int c, char *v[])
 {
 	int r = 0, f1, l;
-	Elf64_Ehdr *E;
+	Elf64_Ehdr E;
 
 	if (c != 2)
-		dprintf(ER, US, v[1]), exit(98);
+		dprintf(ER, US), exit(98);
 	f1 = open(v[1], O_RDONLY);
 	if (f1 == -1)
 	{
 		dprintf(ER, "cant open: %s\n", v[1]), exit(98);
 	}
-	E = malloc(sizeof(Elf64_Ehdr));
-	if (E == NULL)
+	r = read(f1, &E, sizeof(E));
+	if (r < 1 || r != sizeof(E))
 	{
-		close(f1);
-		exit(98);
-	}
-	r = read(f1, E, sizeof(Elf64_Ehdr));
-	if (r < 1)
-	{
-		free(E);
 		dprintf(ER, "cant read: %s\n", v[1]);
-		close(f1);
 		exit(98);
 	}
-	EL(E->e_ident);
-	ma(E->e_ident);
-	cl(E->e_ident);
-	da(E->e_ident);
-	ve(E->e_ident);
-	abi(E->e_ident);
-	ty(E->e_type, E->e_ident);
-	ent(E->e_entry, E->e_ident);
+	if (E.e_ident[0] == 0x7f && E.e_ident[1] == 'E'
+			&& E.e_ident[2] == 'L' && E.e_ident[3] == 'F')
+	{
+		printf("ELF Header:\n");
+	}
+	else
+		dprintf(ER, "NOT ELF FILE %s\n", v[1]), exit(98);
+	ma(E);
+	cl(E);
+	da(E);
+	ve(E);
+	sab(E);
+	abi(E);
+	ty(E);
+	ent(E);
 	l = close(f1);
 	if (l == -1)
 	{
