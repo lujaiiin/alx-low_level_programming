@@ -286,13 +286,6 @@ int main(int c, char *v[])
 	}
 	else
 		dprintf(ER, "NOT ELF FILE %s\n", v[1]), exit(98);
-	ma(E);
-	cl(E);
-	da(E);
-	ve(E);
-	sab(E);
-	abi(E);
-	ty(E);
 	l = close(f1);
 	if (l == -1)
 	{
