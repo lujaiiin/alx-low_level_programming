@@ -40,7 +40,7 @@ void EL(unsigned char *E)
 
 	for (i = 0; i < 4; i++)
 	{
-		if (E[i] == 0x7f && E[i] == 'E' &&
+		if (E[i] == 127 && E[i] == 'E' &&
 				E[i] == 'L' && E[i] == 'F')
 		{
 			printf("ELF Header:\n");
@@ -140,6 +140,31 @@ void ty(unsigned int t, unsigned char *te)
 	{
 		printf("NONE (None)\n");
 	}
+	else if (t == ET_EXEC)
+	{
+		printf("EXEC (Executable file)\n");
+	}
+	else if (t == ET_REL)
+	{
+		printf("REL (Relocatable file)\n");
+	}
+	else if (t == ET_DYN)
+	{
+		printf("DYN (Shared object file)\n");
+	}
+	else
+		printf("CORE (Core file)\n");
+
+}
+/**
+ * abi - function
+ * @a: value
+ * Return: always
+ */
+void abi(unsigned char *a)
+{
+	printf("  ABI Version:                       %d",
+			a[EI_ABIVERSION]);
 }
 /**
  * ma - function
@@ -198,6 +223,8 @@ int main(int c, char *v[])
 	cl(E->e_ident);
 	da(E->e_ident);
 	ve(E->e_ident);
+	abi(E->e_ident);
+	ty(E->e_type, E->e_ident);
 	ent(E->e_entry, E->e_ident);
 	l = close(f1);
 	if (l == -1)
