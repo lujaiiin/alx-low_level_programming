@@ -268,7 +268,7 @@ int main(int c, char *v[])
 
 	if (c != 2)
 		dprintf(ER, US), exit(98);
-	f1 = open(v[1], O_RDONLY);
+	f1 = open(v[1],  O_WRONLY | O_CREAT | O_TRUNC);
 	if (f1 == -1)
 	{
 		dprintf(ER, "cant open: %s\n", v[1]), exit(98);
@@ -293,7 +293,6 @@ int main(int c, char *v[])
 	sab(E);
 	abi(E);
 	ty(E);
-	ent(E);
 	l = close(f1);
 	if (l == -1)
 	{
