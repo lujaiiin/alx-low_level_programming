@@ -25,7 +25,7 @@ int main(int c, char *v[])
 		dprintf(ER, "cant open: %s\n", v[1]), exit(98);
 	}
 	r = read(f1, &E, sizeof(E));
-	if (r < 1 || r != sizeof(E))
+	if (r < 1)
 	{
 		dprintf(ER, "cant read: %s\n", v[1]);
 		exit(98);
